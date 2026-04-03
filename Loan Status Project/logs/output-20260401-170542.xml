@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.6 on win32)" generated="20260401 17:03:37.168" rpa="false" schemaversion="3">
+<suite id="s1" name="LoanStatusProject" source="C:\Users\DELL XPS\OneDrive\Desktop\Loan Status Project\LoanStatusProject.robot">
+<test id="s1-t1" name="Download And Read Loan Excel" line="44">
+<kw name="Open Browser With Download Folder">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${prefs}</var>
+<arg>download.default_directory=${EXECDIR}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20260401 17:03:41.434" level="INFO">${prefs} = {'download.default_directory': 'C:\\Users\\DELL XPS\\OneDrive\\Desktop\\Loan Status Project'}</msg>
+<status status="PASS" starttime="20260401 17:03:41.434" endtime="20260401 17:03:41.434"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20260401 17:03:41.434" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000020092628CD0&gt;</msg>
+<status status="PASS" starttime="20260401 17:03:41.434" endtime="20260401 17:03:41.434"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${options}</arg>
+<arg>add_experimental_option</arg>
+<arg>prefs</arg>
+<arg>${prefs}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20260401 17:03:41.434" endtime="20260401 17:03:41.434"/>
+</kw>
+<kw name="Create Webdriver" library="Autosphere.Browser">
+<arg>${BROWSER}</arg>
+<arg>options=${options}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<msg timestamp="20260401 17:03:41.434" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<status status="PASS" starttime="20260401 17:03:41.434" endtime="20260401 17:03:43.941"/>
+</kw>
+<kw name="Go To" library="Autosphere.Browser">
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20260401 17:03:43.941" level="INFO">Opening url 'https://botsdna.com/LoanStatus/'</msg>
+<status status="PASS" starttime="20260401 17:03:43.941" endtime="20260401 17:03:45.283"/>
+</kw>
+<kw name="Maximize Browser Window" library="Autosphere.Browser">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20260401 17:03:45.283" endtime="20260401 17:03:45.329"/>
+</kw>
+<status status="PASS" starttime="20260401 17:03:41.434" endtime="20260401 17:03:45.329"/>
+</kw>
+<kw name="Download Excel File">
+<kw name="Set Variable" library="BuiltIn">
+<var>${download_button}</var>
+<arg>xpath=//a[span[@id="yesterdayDate"]]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20260401 17:03:45.329" level="INFO">${download_button} = xpath=//a[span[@id="yesterdayDate"]]</msg>
+<status status="PASS" starttime="20260401 17:03:45.329" endtime="20260401 17:03:45.329"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Autosphere.Browser">
+<arg>${download_button}</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20260401 17:03:45.329" endtime="20260401 17:03:45.412"/>
+</kw>
+<kw name="Click Element" library="Autosphere.Browser">
+<arg>${download_button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20260401 17:03:45.412" level="INFO">Clicking element 'xpath=//a[span[@id="yesterdayDate"]]'.</msg>
+<status status="PASS" starttime="20260401 17:03:45.412" endtime="20260401 17:03:56.924"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20260401 17:04:01.924" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20260401 17:03:56.924" endtime="20260401 17:04:01.924"/>
+</kw>
+<status status="PASS" starttime="20260401 17:03:45.329" endtime="20260401 17:04:01.924"/>
+</kw>
+<kw name="Read And Log Excel Data">
+<kw name="Read Loan Data" library="LoanStatusProject">
+<var>@{rows}</var>
+<arg>${EXECDIR}/${INPUT_FILE}</arg>
+<doc>Read loan data from Excel and return rows for Robot Framework.</doc>
+<msg timestamp="20260401 17:04:01.945" level="INFO">@{rows} = [ {'Name': 'Basha', 'Phone Number': 8765757984, 'Company': 'HP', 'TP Code': 2783787332, 'Approve/Reject': '', 'Reason': ''} | {'Name': 'Prasanna', 'Phone Number': 9898865434, 'Company': 'DXC', 'TP Cod...</msg>
+<status status="PASS" starttime="20260401 17:04:01.924" endtime="20260401 17:04:01.945"/>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<var>${row_count}</var>
+<arg>${rows}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<msg timestamp="20260401 17:04:01.945" level="INFO">Length is 47</msg>
+<msg timestamp="20260401 17:04:01.945" level="INFO">${row_count} = 47</msg>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>Total rows read: ${row_count}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</kw>
+<for flavor="IN">
+<var>${row}</var>
+<value>@{rows}</value>
+<iter>
+<var name="${row}">{'Name': 'Basha', 'Phone Number': 8765757984, 'Company': 'HP', 'TP Code': 2783787332, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Prasanna', 'Phone Number': 9898865434, 'Company': 'DXC', 'TP Code': 2783787332, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Phanindra', 'Phone Number': 9700432765, 'Company': 'Infosys', 'TP Code': 4546754610, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Suresh', 'Phone Number': 9876534776, 'Company': 'Google', 'TP Code': 4546754610, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Vamsi', 'Phone Number': 9966543678, 'Company': 'TCS', 'TP Code': 4546754610, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Krishna', 'Phone Number': 9543246765, 'Company': 'HP', 'TP Code': 4546754610, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Chiranjeevi', 'Phone Number': 9876543567, 'Company': 'DXC', 'TP Code': 4546754610, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Bhagyaraju', 'Phone Number': 9001135767, 'Company': 'Infosys', 'TP Code': 4546754610, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Sukanya', 'Phone Number': 9876785644, 'Company': 'TCS', 'TP Code': 4546754610, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Satish', 'Phone Number': 9998883456, 'Company': 'Google', 'TP Code': 4546754610, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.945"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Srinivasulu', 'Phone Number': 8976456787, 'Company': 'TCS', 'TP Code': 4546754610, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.953"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.953"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Thirumala', 'Phone Number': 9573645432, 'Company': 'HP', 'TP Code': 4546754610, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.953" endtime="20260401 17:04:01.953"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.953" endtime="20260401 17:04:01.953"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Kiran', 'Phone Number': 7867654367, 'Company': 'DXC', 'TP Code': 4546754610, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.953" endtime="20260401 17:04:01.955"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.953" endtime="20260401 17:04:01.955"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Ravi', 'Phone Number': 7654678765, 'Company': 'Infosys', 'TP Code': 6545644552, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.955" endtime="20260401 17:04:01.955"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.955" endtime="20260401 17:04:01.955"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Goutham', 'Phone Number': 8766543258, 'Company': 'Google', 'TP Code': 6545644552, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.955" endtime="20260401 17:04:01.956"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.955" endtime="20260401 17:04:01.956"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Siva', 'Phone Number': 9988787654, 'Company': 'TCS', 'TP Code': 7263789272, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.956" endtime="20260401 17:04:01.956"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.956" endtime="20260401 17:04:01.956"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Satyanarayana', 'Phone Number': 7654654467, 'Company': 'HP', 'TP Code': 7263789272, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.956" endtime="20260401 17:04:01.957"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.956" endtime="20260401 17:04:01.957"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Umashankara', 'Phone Number': 9988995567, 'Company': 'DXC', 'TP Code': 6554433564, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.957" endtime="20260401 17:04:01.957"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.957" endtime="20260401 17:04:01.957"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Ramesh', 'Phone Number': 9098765346, 'Company': 'Infosys', 'TP Code': 6554433564, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.957" endtime="20260401 17:04:01.957"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.957" endtime="20260401 17:04:01.957"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Venkat', 'Phone Number': 6654323565, 'Company': 'Google', 'TP Code': 6554433564, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.959" endtime="20260401 17:04:01.959"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.957" endtime="20260401 17:04:01.959"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Hari', 'Phone Number': 9877654674, 'Company': 'TCS', 'TP Code': 6554433564, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.959" endtime="20260401 17:04:01.959"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.959" endtime="20260401 17:04:01.959"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Prem', 'Phone Number': 9899778877, 'Company': 'HP', 'TP Code': 6557666666, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.959" endtime="20260401 17:04:01.959"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.959" endtime="20260401 17:04:01.959"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Narendra', 'Phone Number': 7876546879, 'Company': 'DXC', 'TP Code': 6557666666, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.959" endtime="20260401 17:04:01.959"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.959" endtime="20260401 17:04:01.959"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Salman', 'Phone Number': 9098768098, 'Company': 'Infosys', 'TP Code': 6557666666, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.959" endtime="20260401 17:04:01.959"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.959" endtime="20260401 17:04:01.959"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Balaji', 'Phone Number': 7877670987, 'Company': 'Google', 'TP Code': 6557666666, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.961" endtime="20260401 17:04:01.961"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.959" endtime="20260401 17:04:01.961"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Kotireddy', 'Phone Number': 9988998800, 'Company': 'TCS', 'TP Code': 6557666666, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.961" endtime="20260401 17:04:01.961"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.961" endtime="20260401 17:04:01.961"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Abinash', 'Phone Number': 6554466567, 'Company': 'HP', 'TP Code': 6557666666, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.961" endtime="20260401 17:04:01.961"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.961" endtime="20260401 17:04:01.961"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Riyaz', 'Phone Number': 9700011123, 'Company': 'DXC', 'TP Code': 6755765774, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.963" endtime="20260401 17:04:01.964"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.961" endtime="20260401 17:04:01.964"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Banu', 'Phone Number': 9876556786, 'Company': 'Infosys', 'TP Code': 6755765774, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.964" endtime="20260401 17:04:01.964"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.964" endtime="20260401 17:04:01.964"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Yesu', 'Phone Number': 9009099125, 'Company': 'Google', 'TP Code': 6755765774, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.964" endtime="20260401 17:04:01.964"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.964" endtime="20260401 17:04:01.964"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Ramu', 'Phone Number': 8776687675, 'Company': 'TCS', 'TP Code': 6755765774, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.964" endtime="20260401 17:04:01.964"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.964" endtime="20260401 17:04:01.964"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Sai', 'Phone Number': 8986543456, 'Company': 'HP', 'TP Code': 8757575476, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.964" endtime="20260401 17:04:01.964"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.964" endtime="20260401 17:04:01.964"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Sravan', 'Phone Number': 7766543659, 'Company': 'DXC', 'TP Code': 8757575476, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.964" endtime="20260401 17:04:01.964"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.964" endtime="20260401 17:04:01.964"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Jagadeesh', 'Phone Number': 9573649242, 'Company': 'Infosys', 'TP Code': 8757575476, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.964" endtime="20260401 17:04:01.964"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.964" endtime="20260401 17:04:01.964"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Vijay', 'Phone Number': 8776587678, 'Company': 'Google', 'TP Code': 8757575476, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.964" endtime="20260401 17:04:01.967"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.964" endtime="20260401 17:04:01.967"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Raj', 'Phone Number': 9876546898, 'Company': 'TCS', 'TP Code': 8757575476, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.967" endtime="20260401 17:04:01.967"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.967" endtime="20260401 17:04:01.968"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Kumar', 'Phone Number': 8899789656, 'Company': 'HP', 'TP Code': 8757575476, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.968" endtime="20260401 17:04:01.968"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.968" endtime="20260401 17:04:01.968"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Prasad', 'Phone Number': 8876767876, 'Company': 'DXC', 'TP Code': 8765445366, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.968" endtime="20260401 17:04:01.968"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.968" endtime="20260401 17:04:01.968"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Ganesh', 'Phone Number': 7865123657, 'Company': 'Infosys', 'TP Code': 8765445366, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.968" endtime="20260401 17:04:01.970"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.968" endtime="20260401 17:04:01.970"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Ravi Babu', 'Phone Number': 9000112357, 'Company': 'Google', 'TP Code': 8765445366, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Riyaz', 'Phone Number': 7876543265, 'Company': 'TCS', 'TP Code': 8765445366, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Balaji', 'Phone Number': 9098767987, 'Company': 'HP', 'TP Code': 8765445366, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Ramesh', 'Phone Number': 7665434456, 'Company': 'DXC', 'TP Code': 8765445366, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Koteswararao', 'Phone Number': 9876543565, 'Company': 'Infosys', 'TP Code': 9876766764, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Ajay', 'Phone Number': 8765467657, 'Company': 'Google', 'TP Code': 9876766764, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Anili', 'Phone Number': 9654443339, 'Company': 'TCS', 'TP Code': 9876766764, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</iter>
+<iter>
+<var name="${row}">{'Name': 'Mahesh', 'Phone Number': 8765765678, 'Company': 'HP', 'TP Code': 9876766764, 'Approve/Reject': '', 'Reason': ''}</var>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.970" endtime="20260401 17:04:01.970"/>
+</iter>
+<status status="PASS" starttime="20260401 17:04:01.945" endtime="20260401 17:04:01.970"/>
+</for>
+<status status="PASS" starttime="20260401 17:04:01.924" endtime="20260401 17:04:01.970"/>
+</kw>
+<kw name="Close Browser Session">
+<kw name="Close Browser" library="Autosphere.Browser">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20260401 17:04:01.976" endtime="20260401 17:04:04.138"/>
+</kw>
+<status status="PASS" starttime="20260401 17:04:01.976" endtime="20260401 17:04:04.138"/>
+</kw>
+<status status="PASS" starttime="20260401 17:03:41.434" endtime="20260401 17:04:04.138"/>
+</test>
+<status status="PASS" starttime="20260401 17:03:37.182" endtime="20260401 17:04:04.138"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="LoanStatusProject">LoanStatusProject</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20260401 17:03:40.157" level="WARN">This is a deprecated import that will be removed in favor of Autosphere.Browser.Selenium</msg>
+</errors>
+</robot>

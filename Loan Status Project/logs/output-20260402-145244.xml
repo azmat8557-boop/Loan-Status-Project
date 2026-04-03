@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.6 on win32)" generated="20260402 14:52:09.115" rpa="false" schemaversion="3">
+<suite id="s1" name="LoanStatusProject" source="C:\Users\DELL XPS\OneDrive\Desktop\Loan Status Project\LoanStatusProject.robot">
+<test id="s1-t1" name="Process Loan File Zip And Upload" line="220">
+<kw name="Open Browser With Download Folder">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${prefs}</var>
+<arg>download.default_directory=${EXECDIR}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20260402 14:52:18.504" level="INFO">${prefs} = {'download.default_directory': 'C:\\Users\\DELL XPS\\OneDrive\\Desktop\\Loan Status Project'}</msg>
+<status status="PASS" starttime="20260402 14:52:18.504" endtime="20260402 14:52:18.510"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20260402 14:52:18.510" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x00000230CAE83890&gt;</msg>
+<status status="PASS" starttime="20260402 14:52:18.510" endtime="20260402 14:52:18.510"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${options}</arg>
+<arg>add_experimental_option</arg>
+<arg>prefs</arg>
+<arg>${prefs}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20260402 14:52:18.510" endtime="20260402 14:52:18.510"/>
+</kw>
+<kw name="Create Webdriver">
+<arg>${BROWSER}</arg>
+<arg>options=${options}</arg>
+<msg timestamp="20260402 14:52:18.514" level="FAIL">No keyword with name 'Create Webdriver' found.</msg>
+<status status="FAIL" starttime="20260402 14:52:18.514" endtime="20260402 14:52:18.514"/>
+</kw>
+<kw name="Go To">
+<arg>${URL}</arg>
+<status status="NOT RUN" starttime="20260402 14:52:18.519" endtime="20260402 14:52:18.519"/>
+</kw>
+<kw name="Maximize Browser Window">
+<status status="NOT RUN" starttime="20260402 14:52:18.523" endtime="20260402 14:52:18.523"/>
+</kw>
+<status status="FAIL" starttime="20260402 14:52:18.504" endtime="20260402 14:52:18.524"/>
+</kw>
+<kw name="Download Excel File">
+<status status="NOT RUN" starttime="20260402 14:52:18.524" endtime="20260402 14:52:18.525"/>
+</kw>
+<kw name="Process Loan File And Upload Report">
+<status status="NOT RUN" starttime="20260402 14:52:18.525" endtime="20260402 14:52:18.525"/>
+</kw>
+<kw name="Close Browser Session">
+<status status="NOT RUN" starttime="20260402 14:52:18.526" endtime="20260402 14:52:18.526"/>
+</kw>
+<status status="FAIL" starttime="20260402 14:52:18.504" endtime="20260402 14:52:18.527">No keyword with name 'Create Webdriver' found.</status>
+</test>
+<status status="FAIL" starttime="20260402 14:52:09.132" endtime="20260402 14:52:18.530"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="LoanStatusProject">LoanStatusProject</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20260402 14:52:16.542" level="ERROR">Error in file 'C:\Users\DELL XPS\OneDrive\Desktop\Loan Status Project\LoanStatusProject.robot' on line 2: Importing library 'Autosphere.Browser.selenium' failed: Module 'Autosphere.Browser' does not contain 'selenium'.</msg>
+</errors>
+</robot>
